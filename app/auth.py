@@ -36,9 +36,6 @@ def sign_up():
         password = request.form.get('password')
         password_again = request.form.get('password_again')
 
-        print(full_name, email, password, password_again)
-        # return 'Hello'
-
         email_exists = User.query.filter_by(email=email).first()
         if email_exists:
             print('Email is already taken')
