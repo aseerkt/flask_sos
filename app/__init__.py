@@ -6,6 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
 from flask.cli import with_appcontext
 
+from .utils import format_url
+
 db = SQLAlchemy()
 
 load_dotenv()
@@ -15,7 +17,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY=getenv('SECRET_KEY'),
-        SQLALCHEMY_DATABASE_URI=getenv('DATABASE_URL'),
+        SQLALCHEMY_DATABASE_URI=format_url(getenv('DATABASE_URL')),
         SQLALCHEMY_TRACK_MODIFICATIONS=False
     )
 
