@@ -1,0 +1,25 @@
+.sos_btn {
+  color: #f4f4f4;
+  background-color: #f13c3c;
+  height: 150px;
+  width: 150px;
+  box-shadow: 0 0 10px 0 #e93838, inset 0 0 10px red;
+  border: none;
+  margin: 0 auto;
+  font-size: 3rem;
+  font-weight: 900;
+  display: inline-block;
+  border-radius: 50%;
+  transition: 0.3s all ease-in-out;
+}
+
+.sos_btn:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.sos_btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+}

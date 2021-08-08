@@ -3,8 +3,9 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from .models import User
 from . import db
+from .models import User
+from .utils import is_email
 
 auth = Blueprint("auth", __name__)
 
@@ -22,7 +23,7 @@ def login():
             flash('Incorrect password', category='danger')
         else:
             login_user(user, remember=True)
-            flash('User login success', category='success')
+            flash('Welcome {}'.format(user.full_name), category='success')
             return redirect(url_for('views.home'))
 
     return render_template('auth/login.html')
@@ -43,7 +44,7 @@ def sign_up():
         elif len(full_name) < 3:
             print('Full name is too short')
             flash('Full name is too short', category='danger')
-        elif not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        if not is_email(email):
             print('Invalid email address')
             flash('Invalid email address', category='danger')
         elif password != password_again:
@@ -59,7 +60,7 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('User created', category='success')
+            flash('Welcome {}'.format(new_user.full_name), category='success')
             return redirect(url_for('views.home'))
 
     return render_template('auth/signup.html')
@@ -69,4 +70,5 @@ def sign_up():
 @login_required
 def logout():
     logout_user()
+    flash('Logout success', category='success')
     return redirect(url_for('views.home'))

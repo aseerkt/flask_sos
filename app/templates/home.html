@@ -1,4 +1,34 @@
 {% extends "base.html" %} {% block title %} Home {% endblock %} {% block
 content%}
-<div class="mx-auto w"></div>
-{% endblock %}
+<div class="mx-auto my-5 d-flex justify-content-center">
+  <button disabled="{{ sos_btn_disabled }}" class="sos_btn">SOS</button>
+</div>
+{% if not user.is_authenticated %}
+<div class="text-center alert alert-info">
+  <p>Enable SOS feature by registering with <strong>Flask SOS</strong></p>
+  <a class="mr-2 btn btn-primary" href="{{ url_for('auth.login') }}">Login</a>
+  <a class="btn btn-outline-danger" href="{{ url_for('auth.sign_up') }}"
+    >Sign Up</a
+  >
+</div>
+{% endif %} {% if user.is_authenticated %}
+<h4 class="my-4 text-center">Contacts</h4>
+
+{% if contacts | length < 1 %}
+<div class="text-center alert alert-info">
+  <p>You have not added any contacts</p>
+  <a
+    class="btn btn-outline-primary"
+    href="{{url_for('views.contacts')}}#add-contacts"
+    >Add contacts</a
+  >
+</div>
+{% else %}
+<ul class="list-group">
+  {% for contact in contacts %}
+  <li class="list-group-item">
+    {{contact.full_name}} - {{contact.mobile_number}} - {{contact.email}}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %} {% endif %} {% endblock %}
