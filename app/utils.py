@@ -5,7 +5,7 @@ def is_email(email):
     return match(r"[^@]+@[^@]+\.[^@]+", email)
 
 
-def format_url(url: string) -> string:
+def format_url(url: str) -> str:
     if 'postgres://' not in url:
         return url
     else:
