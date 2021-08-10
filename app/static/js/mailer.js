@@ -8,8 +8,10 @@ SOSBtn.addEventListener('click', () => {
         `/send-message?latitude=${crd.latitude}&longitude=${crd.longitude}`,
         { method: 'POST' }
       );
-      if (res.status === 200) {
+      if (res.status === 201) {
         alert('SOS alert sent successfully');
+      } else {
+        alert('Could not sent SOS alert');
       }
     },
     (err) => {
