@@ -24,7 +24,7 @@ def create_app():
     # initialise flask with the app
     db.init_app(app)
     # register init-db command with flask
-    sync_app(app)
+    register_sync_db_command(app)
 
     with app.app_context():
         #  routes
@@ -67,7 +67,7 @@ def init_db_command():
     click.echo("Initialized the database.")
 
 
-def sync_app(app):
+def register_sync_db_command(app):
     """Register database functions with the Flask app. This is called by
     the application factory.
     """
