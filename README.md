@@ -12,6 +12,6 @@
 
 - [x] Regiser User
 - [x] Login User
-- [ ] Create Message Template
-- [ ] Add contacts (upto 5)
+- [x] Edit Message Template
+- [x] Add contacts (upto 3)
 - [ ] Send alert via bulk messaging API
