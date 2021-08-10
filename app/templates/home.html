@@ -5,6 +5,11 @@ content%}
   <button disabled class="sos_btn" style="text-decoration: line-through">
     SOS
   </button>
+  {% if contacts | length <1 %}
+  <div class="alert alert-info text-center">
+    You have to add contacts to enable SOS
+  </div>
+  {% endif %}
   {% else %}
   <button class="sos_btn">SOS</button>
   {% endif %}
