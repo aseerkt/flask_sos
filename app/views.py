@@ -66,7 +66,7 @@ def edit_message():
 
 @views.route('/send-message', methods=['POST'])
 @login_required
-def send_bulk_mail():
+def send_bulk_sms():
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
 
