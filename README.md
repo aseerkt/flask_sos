@@ -2,12 +2,16 @@
 
 > Send SOS alerts to your contacts in case of emergency with a signle button click
 
-### Tech Stacks
+## Tech Stacks
 
 - Flask
 - Flask SQLAlchemy
 - Flask Login
 - Jinja 2
+
+## Screenshots
+
+![Flask_SOS_Homepage](assets/app_home_screenshot.png)
 
 ## Development
 
