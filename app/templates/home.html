@@ -1,7 +1,13 @@
 {% extends "base.html" %} {% block title %} Home {% endblock %} {% block
 content%}
 <div class="mx-auto my-5 d-flex justify-content-center">
-  <button disabled="{{ sos_btn_disabled }}" class="sos_btn">SOS</button>
+  {% if sos_btn_disabled %}
+  <button disabled class="sos_btn" style="text-decoration: line-through">
+    SOS
+  </button>
+  {% else %}
+  <button class="sos_btn">SOS</button>
+  {% endif %}
 </div>
 {% if not user.is_authenticated %}
 <div class="text-center alert alert-info">
@@ -12,23 +18,31 @@ content%}
   >
 </div>
 {% endif %} {% if user.is_authenticated %}
+<div class="my-4 sos_message text-center">
+  <h4 class="text-center">Message Template</h4>
+  <p>{{user.message}}</p>
+  {% include 'edit-message.html' %}
+</div>
 <h4 class="my-4 text-center">Contacts</h4>
 
 {% if contacts | length < 1 %}
 <div class="text-center alert alert-info">
   <p>You have not added any contacts</p>
-  <a
-    class="btn btn-outline-primary"
-    href="{{url_for('views.contacts')}}#add-contacts"
-    >Add contacts</a
-  >
+  {% include 'add-contact.html' %}
 </div>
 {% else %}
-<ul class="list-group">
+<ul class="list-group text-center mb-5">
   {% for contact in contacts %}
-  <li class="list-group-item">
-    {{contact.full_name}} - {{contact.mobile_number}} - {{contact.email}}
+  <li class="list-group-item d-flex justify-content-between align-items-center"">
+    <div class="d-flex flex-column align-items-start">
+      <strong> {{contact.full_name}}</strong>
+      <small class="text-muted">{{contact.email}}</small>
+    </div>
+    <span> {{contact.mobile_number}} </span>
   </li>
   {% endfor %}
 </ul>
+{% if contacts | length < 3 %}
+<div class="text-center my-5">{% include 'add-contact.html' %} {% endif%}</div>
 {% endif %} {% endif %} {% endblock %}
+

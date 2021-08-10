@@ -1,0 +1,76 @@
+<button
+  type="button"
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#contactModal"
+>
+  Add Contact
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="contactModal"
+  tabindex="-1"
+  aria-labelledby="contactModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contactModalLabel">Add Contact</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form method="POST" action="/contacts">
+        <div class="modal-body">
+          <div class="mb-3 form-floating">
+            <input
+              class="form-control"
+              type="text"
+              id="full_name"
+              name="full_name"
+              placeholder="Sasi Anna"
+            />
+            <label class="form-label" for="full_name">Full name</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input
+              class="form-control"
+              type="text"
+              id="email"
+              name="email"
+              placeholder="sasi@sasi.com"
+            />
+            <label class="form-label" for="email">Email Address</label>
+          </div>
+          <div class="mb-3 form-floating">
+            <input
+              class="form-control"
+              type="number"
+              maxlength="10"
+              id="mobile_number"
+              name="mobile_number"
+              placeholder="Mobile number"
+            />
+            <label class="form-label" for="mobile_number">Mobile number</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
